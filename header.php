@@ -8,6 +8,9 @@
     $getProductLapTop= $product->getProductLapTop();
 	$getProductIpad=$product->getProductIpad();
 	$getProductPhones= $product->getProductPhones();
+	require "models/manufacture.php";
+	$Manufacture = new Manufacture;
+	$getAllManu = $Manufacture->getAllManu();
 
     // var_dump($getAllProducts);
 
@@ -184,13 +187,12 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
+						
 						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Hot Deals</a></li>
-						<li><a href="#">Categories</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Smartphones</a></li>
-						<li><a href="#">Cameras</a></li>
-						<li><a href="#">Accessories</a></li>
+						<?php foreach($getAllManu as $value): ?>
+							<li class=""><a href="products.php?manu_id=<?php echo $value['manu_id'];?>"><?php echo $value['manu_name']?></a></li>
+							<?php endforeach ?>
+
 					</ul>
 					<!-- /NAV -->
 				</div>

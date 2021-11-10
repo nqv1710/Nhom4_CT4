@@ -18,6 +18,15 @@
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
+    public function getProductsByManu($manu_id)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE manu_id = ?");
+        $sql->bind_param("i", $manu_id);
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
     function getNew10Product()
     {
         $sql = self::$connection->prepare("SELECT * FROM  products ORDER BY `id` DESC LIMIT 10");
